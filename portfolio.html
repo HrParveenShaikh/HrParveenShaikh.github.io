@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parveen Sheikh - HR Professional Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        msblue: { 
+                            light: "#E8F4F8", // Light blue-gray
+                            DEFAULT: "#2B6CB0", // Professional blue
+                            dark: "#1A365D" // Deep blue
+                        },
+                        msdark: "#2D3748", // Darker gray
+                        mslight: "#F7FAFC", // Light gray background
+                        gray: { 
+                            50: '#F7FAFC', 
+                            100: '#EDF2F7', 
+                            200: '#E2E8F0', 
+                            300: '#CBD5E0', 
+                            400: '#A0AEC0', 
+                            500: '#718096', 
+                            600: '#4A5568', 
+                            700: '#2D3748', 
+                            800: '#1A202C', 
+                            900: '#171923' 
+                        }
+                    },
+                    // Fonts remain the same
+                    fontFamily: { sans: ["Segoe UI", "Tahoma", "Geneva", "Verdana", "sans-serif"] },
+                    // Animations remain the same
+                    animation: { "fade-in-up": "fadeInUp 0.6s ease-out forwards", "subtle-pulse": "subtlePulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite", "gradient-wave": "gradientWave 18s ease infinite" },
+                    keyframes: { /* Keyframes remain the same */ },
+                },
+            },
+        };
+    </script>
+    <style>
+        /* Base styles */
+        body { 
+            @apply bg-gray-50 text-msdark antialiased;
+            background-color: #F7FAFC;
+        }
+
+        /* Mobile-first adjustments */
+        @media (max-width: 768px) {
+            /* Hero section mobile adjustments */
+            #hero {
+                border-radius: 0 0 20% 0;
+                padding-top: 5rem;
+                padding-bottom: 3rem;
+            }
+            #hero-image {
+                width: 120px;
+                height: 120px;
+            }
+            #hero-name {
+                font-size: 2rem;
+            }
+            #hero-short-title {
+                font-size: 1.25rem;
+            }
+            #hero-tagline {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            /* Section spacing */
+            section {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            /* Card adjustments */
+            .card {
+                margin-bottom: 1rem;
+                padding: 1.25rem;
+            }
+
+            /* Skills section */
+            .skill-pill {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.75rem;
+                margin: 0.25rem;
+            }
+
+            /* Timeline adjustments */
+            .timeline {
+                padding-left: 1.5rem;
+            }
+            .timeline::before {
+                left: 0.75rem;
+            }
+            .timeline-dot {
+                left: 0.75rem;
+            }
+
+            /* Contact section */
+            .contact-info {
+                padding: 1.5rem;
+            }
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            /* Footer adjustments */
+            footer {
+                padding: 1.5rem 0;
+            }
+            .footer-content {
+                text-align: center;
+            }
+        }
+
+        /* Navbar mobile adjustments */
+        #navbar {
+            @apply bg-msblue-dark z-50 shadow-md;
+            background-color: rgba(26, 54, 93, 0.98);
+        }
+        #mobile-menu {
+            @apply bg-msblue-dark pb-4 absolute w-full left-0 border-t border-msblue-light/20 md:hidden hidden shadow-lg;
+            background-color: rgba(26, 54, 93, 0.98);
+            backdrop-filter: blur(8px);
+        }
+        #mobile-menu .mobile-nav-link {
+            @apply text-white py-3 px-4 hover:bg-msblue-light/10 transition-colors duration-200;
+            font-size: 1rem;
+        }
+
+        /* Section animations with mobile optimization */
+        .section-animate { 
+            opacity: 0; 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+            transform: translateY(20px); 
+        }
+        @media (max-width: 768px) {
+            .section-animate {
+                transform: translateY(10px);
+            }
+        }
+
+        /* Card hover effects for mobile */
+        @media (hover: hover) {
+            .card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        /* Form input mobile adjustments */
+        @media (max-width: 768px) {
+            input, textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 0.75rem;
+            }
+            button[type="submit"] {
+                padding: 0.75rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Back to top button mobile adjustments */
+        #back-to-top {
+            @apply fixed bottom-4 right-4 p-2.5 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50;
+            width: 40px;
+            height: 40px;
+        }
+        @media (max-width: 768px) {
+            #back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        /* Loading screen mobile adjustments */
+        @media (max-width: 768px) {
+            #loading-screen .animate-spin {
+                width: 40px;
+                height: 40px;
+            }
+            #loading-screen p {
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Grid layout adjustments */
+        @media (max-width: 768px) {
+            .grid {
+                gap: 1rem;
+            }
+            .grid-cols-1 {
+                grid-template-columns: 1fr;
+            }
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Container padding adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        /* Section title mobile adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.75rem;
+                margin-bottom: 1.5rem;
+            }
+            .section-title:after {
+                width: 40px;
+            }
+        }
+
+        /* Social icons mobile adjustments */
+        @media (max-width: 768px) {
+            .social-icon {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Timeline content mobile adjustments */
+        @media (max-width: 768px) {
+            .timeline-content {
+                padding-left: 0.5rem;
+            }
+            .timeline-content .card {
+                padding: 1rem;
+            }
+            .timeline-content h3 {
+                font-size: 1.125rem;
+            }
+            .timeline-content p {
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Education cards mobile adjustments */
+        @media (max-width: 768px) {
+            .education-card {
+                padding: 1rem;
+            }
+            .education-card i {
+                width: 2rem;
+                height: 2rem;
+            }
+            .education-card h3 {
+                font-size: 1rem;
+            }
+            .education-card p {
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Section animations */
+        .section-animate { 
+            opacity: 0; 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+            transform: translateY(20px); 
+        }
+        .section-animate.is-visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* Navbar styles */
+        #navbar {
+            transition: all 0.3s ease;
+            @apply bg-msblue-dark z-50 shadow-md;
+            background-color: rgba(26, 54, 93, 0.95); /* Deep blue with slight transparency */
+            backdrop-filter: blur(8px);
+        }
+        #navbar .nav-link, #navbar .navbar-brand-text { 
+            @apply text-white opacity-90 hover:opacity-100 transition-opacity duration-200;
+        }
+        #navbar .navbar-brand-initials { 
+            @apply bg-white text-msblue-dark shadow-sm;
+        }
+        #navbar.scrolled {
+            @apply shadow-lg py-2;
+        }
+        #navbar.not-scrolled {
+            @apply py-4 shadow-md;
+        }
+
+        /* Hero section */
+        #hero { 
+            background: linear-gradient(135deg, #2B6CB0, #1A365D);
+            background-size: 200% 200%; 
+            animation: gradientWave 15s ease infinite; 
+            color: white; 
+            border-radius: 0 0 40% 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: relative;
+        }
+        #hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #f9f9f9);
+            pointer-events: none;
+        }
+
+        /* Section styles */
+        section {
+            position: relative;
+        }
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+        }
+
+        /* Section backgrounds */
+        #about { background-color: #ffffff; }
+        #experience { background-color: #f8f9fa; }
+        #education { background-color: #ffffff; }
+        #skills { background-color: #f8f9fa; }
+        #contact { background-color: #ffffff; }
+
+        /* Card styles */
+        .card { 
+            @apply border-none rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 mb-6 bg-white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Section titles */
+        .section-title {
+            @apply text-msblue-dark relative pb-2 mb-10 font-bold text-3xl;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .section-title:after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 50px; 
+            height: 3px; 
+            @apply bg-msblue rounded-full;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Skills */
+        .skill-pill {
+            @apply bg-msblue-light text-msblue-dark px-3 py-1 rounded-full text-xs font-medium;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+        .skill-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #tools-platforms .skill-pill {
+            @apply bg-gray-100 text-gray-700;
+        }
+
+        /* Timeline */
+        .timeline { 
+            position: relative; 
+            padding-left: 2.5rem; 
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            transform: translateX(-50%);
+            top: 1rem;
+            bottom: 0;
+            width: 2px;
+            @apply bg-msblue-light;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 1.25rem;
+            top: 0.5rem;
+            transform: translateX(-50%);
+            width: 0.875rem;
+            height: 0.875rem;
+            @apply rounded-full bg-white border-2 border-msblue;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer { 
+            @apply bg-msdark text-white;
+            background-color: #2D3748;
+        }
+        footer a { 
+            @apply text-gray-300 hover:text-msblue-light transition-colors duration-200;
+        }
+
+        /* Back to top button */
+        #back-to-top { 
+            @apply bg-msblue text-white hover:bg-msblue-dark transition-all duration-300;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Contact form */
+        #contact-form button[type="submit"] { 
+            @apply bg-msblue text-white hover:bg-msblue-dark transition-all duration-300;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Form inputs */
+        input, textarea {
+            @apply bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-msblue focus:border-msblue transition duration-200;
+        }
+
+        /* Social icons */
+        .social-icon {
+            @apply text-white hover:text-msblue-light transition-colors duration-200;
+        }
+
+        /* Loading screen */
+        #loading-screen {
+            @apply bg-white z-[100];
+        }
+        #loading-screen .animate-spin {
+            border-color: theme('colors.msblue.DEFAULT');
+            border-top-color: transparent;
+        }
+
+        /* Update mobile menu text color */
+        #mobile-menu .mobile-nav-link {
+            @apply text-white hover:bg-msblue-light/20 transition-colors duration-200;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-msdark">
+    <!-- Loading screen -->
+    <div id="loading-screen" class="fixed inset-0 flex items-center justify-center bg-white z-[100] transition-opacity duration-500">
+        <div class="flex flex-col items-center">
+            <div class="w-14 h-14 border-4 rounded-full animate-spin"></div>
+            <p class="mt-4 text-msblue font-semibold">Loading Portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 not-scrolled bg-msblue-dark shadow-md"> 
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between h-16">
+                <a href="#hero" class="flex items-center space-x-3 group shrink-0">
+                    <div class="navbar-brand-initials h-9 w-9 rounded-full flex items-center justify-center font-bold text-lg group-hover:scale-105 transition-transform bg-white text-msblue-dark">PS</div>
+                    <div class="hidden sm:block">
+                        <h1 class="navbar-brand-text text-lg font-bold text-white" id="nav-name">Loading...</h1>
+                    </div>
+                </a>
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
+                  
+                    <a href="#about" class="nav-link text-sm font-medium relative">About</a>
+                    <a href="#experience" class="nav-link text-sm font-medium relative">Experience</a>
+                    <a href="#education" class="nav-link text-sm font-medium relative">Education</a>
+                    <a href="#skills" class="nav-link text-sm font-medium relative">Skills</a>
+                    <a href="#contact" class="nav-link text-sm font-medium relative">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white p-1 focus:outline-none" aria-label="Toggle Menu" aria-expanded="false">
+                        <i id="menu-icon" data-lucide="menu" class="w-7 h-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+       
+        <div id="mobile-menu" class="md:hidden hidden bg-msblue-dark/95 backdrop-blur-sm pb-4 absolute w-full left-0 border-t border-msblue-light/20">
+            <div class="container mx-auto px-4 flex flex-col space-y-1 pt-3">
+                 <a href="#about" class="mobile-nav-link py-2 px-3 text-white rounded hover:bg-msblue-light/20 transition block">About</a>
+                 <a href="#experience" class="mobile-nav-link py-2 px-3 text-white rounded hover:bg-msblue-light/20 transition block">Experience</a>
+                 <a href="#education" class="mobile-nav-link py-2 px-3 text-white rounded hover:bg-msblue-light/20 transition block">Education</a>
+                 <a href="#skills" class="mobile-nav-link py-2 px-3 text-white rounded hover:bg-msblue-light/20 transition block">Skills</a>
+                 <a href="#contact" class="mobile-nav-link py-2 px-3 text-white rounded hover:bg-msblue-light/20 transition block">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="pt-16 pb-16 overflow-x-hidden">
+        <!-- Hero section -->
+        <section id="hero" class="relative py-20 md:py-28 section-animate">
+            <div class="container mx-auto px-4 md:px-6 relative z-10">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="inline-block mb-6">
+                        <img id="hero-image" src="placeholder-profile.png" alt="Parveen Sheikh" class="w-36 h-36 md:w-48 md:h-48 rounded-full border-4 border-white/80 shadow-xl mx-auto object-cover bg-gray-200"/>
+                    </div>
+                    <h1 id="hero-name" class="text-4xl md:text-5xl font-bold mb-2 opacity-0 animate-fade-in-up" style="animation-delay: 0.1s;">Loading...</h1>
+                    <h3 id="hero-short-title" class="text-xl md:text-2xl mb-4 opacity-90 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">Loading...</h3>
+                    <p id="hero-tagline" class="text-lg md:text-xl mb-6 max-w-2xl mx-auto opacity-80 opacity-0 animate-fade-in-up" style="animation-delay: 0.3s;">
+                        Loading...
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-5 mt-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+                        <a id="linkedin-hero-link" href="#" target="_blank" class="social-icon text-3xl transition duration-300" aria-label="LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                         <a id="email-hero-link" href="#" class="social-icon text-3xl transition duration-300" aria-label="Email">
+                            <i data-lucide="mail"></i>
+                        </a>
+                         <a id="phone-hero-link" href="#" class="social-icon text-3xl transition duration-300" aria-label="Phone">
+                            <i data-lucide="phone"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About section -->
+        <section id="about" class="py-20 bg-mslight section-animate">
+             <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center md:text-left mb-12">
+                        <h2 class="section-title inline-block">About Me</h2>
+                    </div>
+                    <div class="bg-white shadow-xl rounded-xl p-6 md:p-10">
+                        <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12">
+                            
+                            <div class="lg:w-full">
+                                <h3 class="text-2xl font-bold text-msblue mb-4">Professional Summary</h3>
+                                <p id="summary" class="text-gray-700 mb-6 leading-relaxed">Loading...</p>
+
+                                <h4 class="text-lg font-semibold text-msdark mb-3 mt-6 pt-4 border-t border-gray-100">Details</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm">
+                                     <div class="flex items-center space-x-3">
+                                         <i data-lucide="map-pin" class="w-5 h-5 text-msblue shrink-0"></i>
+                                         <span id="location" class="text-gray-700">Loading...</span>
+                                     </div>
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="mail" class="w-5 h-5 text-msblue shrink-0"></i>
+                                        <a id="email-link-about" href="mailto:loading..." class="text-gray-700 hover:text-msblue break-all">Loading...</a>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="phone" class="w-5 h-5 text-msblue shrink-0"></i>
+                                        <a id="phone-link-about" href="tel:loading..." class="text-gray-700 hover:text-msblue">Loading...</a>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="linkedin" class="w-5 h-5 text-msblue shrink-0"></i>
+                                        <a id="linkedin-link-about" href="#" target="_blank" class="text-gray-700 hover:text-msblue break-all">Loading...</a>
+                                    </div>
+                                     <div class="flex items-center space-x-3">
+                                        <i data-lucide="cake" class="w-5 h-5 text-msblue shrink-0"></i>
+                                        <span id="birthday" class="text-gray-700">Loading...</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="languages" class="w-5 h-5 text-msblue shrink-0"></i>
+                                        <span id="languages-detail" class="text-gray-700">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills section -->
+        <section id="skills" class="py-20 bg-white section-animate">
+             <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="section-title inline-block">Skills & Expertise</h2>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                        <div class="bg-gray-50 rounded-xl card p-6">
+                            <div class="flex items-center mb-5 space-x-4">
+                                <div class="w-12 h-12 bg-msblue text-white rounded-lg flex items-center justify-center shrink-0">
+                                    <i data-lucide="briefcase" class="w-6 h-6 stroke-current"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-msdark">HR & Technical Skills</h3>
+                            </div>
+                            <div id="tech-skills" class="flex flex-wrap gap-2">
+                                <span class="skill-pill animate-pulse bg-gray-200 text-gray-200 px-3 py-1 rounded-full text-xs font-medium">Loading...</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl card p-6">
+                            <div class="flex items-center mb-5 space-x-4">
+                                <div class="w-12 h-12 bg-msblue text-white rounded-lg flex items-center justify-center shrink-0">
+                                    <i data-lucide="terminal-square" class="w-6 h-6 stroke-current"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-msdark">Tools & Platforms</h3>
+                            </div>
+                            <div id="tools-platforms" class="flex flex-wrap gap-2">
+                                <span class="skill-pill animate-pulse bg-gray-200 text-gray-200 px-3 py-1 rounded-full text-xs font-medium">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="mt-10">
+                         <h3 class="text-lg font-semibold text-msdark mb-3 text-center">Languages</h3>
+                         <div id="languages" class="flex justify-center flex-wrap gap-x-6 gap-y-2 text-center">
+                            <div class="animate-pulse h-4 bg-gray-200 rounded w-24"></div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience section -->
+        <section id="experience" class="py-20 bg-mslight section-animate">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="section-title inline-block">Professional Experience</h2>
+                    </div>
+                    <div id="experience-container" class="timeline">
+                       
+                        <div class="timeline-item animate-pulse">
+                           <div class="timeline-dot"></div>
+                           <div class="timeline-content">
+                               <div class="bg-white p-6 card">
+                                    <div class="h-4 bg-gray-200 rounded w-1/3 mb-2"></div>
+                                    <div class="h-5 bg-gray-200 rounded w-3/4 mb-1"></div>
+                                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-3"></div>
+                                    <div class="h-3 bg-gray-200 rounded w-1/4 mb-4"></div>
+                                    <div class="space-y-1.5">
+                                        <div class="h-3 bg-gray-200 rounded"></div>
+                                        <div class="h-3 bg-gray-200 rounded w-5/6"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education section -->
+        <section id="education" class="py-20 bg-white section-animate">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="section-title inline-block">Education</h2>
+                    </div>
+                    <div id="education-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                         <div class="bg-gray-50 p-6 card animate-pulse">
+                             <div class="flex items-start space-x-4">
+                                 
+                             </div>
+                         </div>
+                         <div class="bg-gray-50 p-6 card animate-pulse">
+                             <div class="flex items-start space-x-4">
+                                 
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications & Awards section (Still hidden by default) -->
+        <section id="certifications" class="py-20 bg-mslight section-animate hidden">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="section-title inline-block">Achievements</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div id="certifications-block" class="hidden">
+                             <!-- {/* ... content as before ... */}-->
+                        </div>
+                        <div id="awards-block" class="hidden">
+                            <!-- {/* ... content as before ... */}-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact section -->
+        <section id="contact" class="py-20 bg-white section-animate">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="section-title inline-block">Get In Touch</h2>
+                    </div>
+                    <div class="bg-white shadow-xl rounded-xl overflow-hidden">
+                         <div class="grid grid-cols-1 md:grid-cols-2">
+                             <!-- {/* Contact Info */}-->
+                             <div class="p-8 bg-gradient-to-br from-msblue to-msblue-dark text-white rounded-t-xl md:rounded-l-xl md:rounded-tr-none">
+                                 <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                                 <p class="mb-8 opacity-90 text-sm leading-relaxed">Feel free to reach out via email, phone, or LinkedIn.</p>
+                                 <div class="space-y-6">
+                                     <div class="flex items-center space-x-4"><i data-lucide="mail" class="w-5 h-5 shrink-0"></i><a id="contact-email-link" href="mailto:loading..." class="opacity-90 hover:opacity-100 break-all text-sm">Loading...</a></div>
+                                     <div class="flex items-center space-x-4"><i data-lucide="phone" class="w-5 h-5 shrink-0"></i><a id="contact-phone-link" href="tel:loading..." class="opacity-90 hover:opacity-100 text-sm">Loading...</a></div>
+                                     <div class="flex items-center space-x-4"><i data-lucide="map-pin" class="w-5 h-5 shrink-0"></i><p id="contact-location" class="opacity-90 text-sm">Loading...</p></div>
+                                     <div class="flex items-center space-x-4"><i data-lucide="linkedin" class="w-5 h-5 shrink-0"></i><a id="contact-linkedin-link" href="#" target="_blank" class="opacity-90 hover:opacity-100 hover:underline break-all text-sm">Loading...</a></div>
+                                 </div>
+                             </div>
+                             <!-- {/* Contact Form */} -->
+                             <div class="p-8 bg-gray-50 rounded-b-xl md:rounded-r-xl md:rounded-bl-none">
+                                 <!-- {/* Form structure remains the same */} -->
+                                  <h3 class="text-2xl font-bold mb-6 text-msdark">Send a Message</h3>
+                                  <form id="contact-form" class="space-y-5">
+                                      <!-- {/* Input fields remain the same */} -->
+                                       <div><label for="name" class="sr-only">Your Name</label><input type="text" id="name" name="name" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-msblue focus:border-msblue transition duration-200 text-sm" required placeholder="Your Name"></div>
+                                       <div><label for="contact-email-input" class="sr-only">Your Email</label><input type="email" id="contact-email-input" name="email" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-msblue focus:border-msblue transition duration-200 text-sm" required placeholder="Your Email"></div>
+                                       <div><label for="subject" class="sr-only">Subject</label><input type="text" id="subject" name="subject" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-msblue focus:border-msblue transition duration-200 text-sm" required placeholder="Subject"></div>
+                                       <div><label for="message" class="sr-only">Message</label><textarea id="message" name="message" rows="4" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-msblue focus:border-msblue transition duration-200 text-sm" required placeholder="Your message here..."></textarea></div>
+                                       <button type="submit" class="w-full py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center font-semibold shadow hover:shadow-lg space-x-2 text-sm"><i data-lucide="send" class="w-4 h-4"></i><span>Send Message</span></button>
+                                       <p id="form-status" class="text-xs text-center mt-3 h-4"></p>
+                                  </form>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8">
+        <!-- {/* Footer structure remains the same */} -->
+         <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+                    <div class="mb-4 md:mb-0">
+                        <h3 id="footer-name" class="text-lg font-bold mb-0.5">Loading...</h3>
+                         <p class="text-gray-400 text-xs" id="footer-title">Loading...</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" id="email-footer-link" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                            <a href="#" id="linkedin-footer-link" target="_blank" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                            <a href="#" id="phone-footer-link" aria-label="Phone"><i data-lucide="phone" class="w-5 h-5"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700/50 mt-6 pt-5 text-center text-gray-400 text-xs">
+                    <p>&copy; <span id="current-year"></span> <span id="footer-copyright-name">Parveen Sheikh</span>. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+     <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-4 right-4 p-2.5 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50" aria-label="Back to top">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // --- Lucide Icons Helper ---
+        function createLucideIcons() {
+            try {
+                if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+                    lucide.createIcons();
+                    // console.log("Lucide icons created/updated."); // Optional log
+                } else {
+                    // console.warn("Lucide library not ready or createIcons is not a function.");
+                }
+            } catch (error) {
+                console.error("Error creating Lucide icons:", error);
+            }
+        }
+
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM Loaded. Initializing portfolio...");
+
+            // --- Portfolio Data (Embedded for Parveen Sheikh) ---
+            const portfolioData = {
+                personalInfo: {
+                    name: "Parveen Sheikh",
+                    location: "Bhopal, MP, India",
+                    contact: {
+                        phone: "8103742295",
+                        email: "Parveensheikh1205@gmail.com",
+                        linkedin: "www.linkedin.com/in/parveen-sheikh-1112a2253",
+                    },
+                    title: "HR Professional | Recruitment | Employee Relations | Social Media Management",
+                    shortTitle: "HR Professional",
+                    tagline: "Transforming organizations through strategic HR practices and employee engagement"
+                },
+                summary: "Results-oriented HR professional with a Master of Business Administration in Human Resources and Supply Chain Management. Possessing a strong foundation in HR practices, recruitment strategies, and employee relations. Demonstrated ability to streamline processes, enhance employee engagement, and drive organizational success. Proven track record of effective leadership, analytical thinking, and problem-solving skills. Experienced in recruitment, onboarding, policy development, and employee engagement initiatives. Passionate about creating thriving workplace environments where employees and organizations achieve strategic objectives.",
+                skills: {
+                    technical: [ "Full-cycle Recruitment", "Job Postings", "Resume Screening", "Interviewing", "Onboarding", "HR Policy Development", "Employee Handbooks", "HR Best Practices Research", "Employee Engagement Initiatives", "Diversity Programs", "Student Counseling", "Academic & Career Planning", "Record Management" ],
+                    toolsPlatforms: [ "Social Media Strategy", "Social Media Platforms (Instagram, Facebook, LinkedIn, Twitter)", "Social Media Analytics", "Paid Social Media Campaigns", "Community Management", "MS Office Suite (Assumed)" ],
+                    languages: [ { language: "Hindi", proficiency: "Native or Bilingual" }, { language: "English", proficiency: "Professional Working" } ]
+                },
+                certifications: [],
+                awards: [],
+                workExperience: [
+                    { company: "SAM Global University, Bhopal", position: "Social Media Handler", duration: "July 2023 - Present", location: "Bhopal, MP, India", responsibilities: [ "Develop and execute social media strategies to achieve business goals.", "Monitor and analyze social media performance metrics and trends.", "Manage multiple social media platforms including Instagram, Facebook, LinkedIn, Twitter.", "Plan and execute paid social media advertising campaigns.", "Engage with followers to build brand community and loyalty.", "Collaborate with creative teams to ensure cohesive branding.", "Prepare detailed reports on campaign performance and audience insights." ] },
+                    { company: "YOURSTHATSENIOR", position: "HR Intern", duration: "June 2023 - Sep 2023", location: "Remote/Not Specified", responsibilities: [ "Developed expertise in full-cycle recruitment processes including job postings, resume screening, interviews, and onboarding procedures.", "Assisted in creating and updating HR policies, procedures, and employee handbooks.", "Conducted research and analysis on industry trends and best practices in human resources management.", "Contributed to the development and implementation of employee engagement initiatives and diversity programs." ] },
+                    { company: "Miracle IT Career Academy Academic", position: "Senior Counselor", duration: "Jan 2023 - June 2023", location: "Not Specified", responsibilities: [ "Advised and supported students in academic and career planning, enhancing their overall academic experience.", "Managed and maintained student records, ensuring accuracy and confidentiality.", "Organized and conducted career workshops, seminars, and counseling sessions.", "Collaborated with faculty and administration to address student needs and resolve conflicts." ] }
+                ],
+                education: [
+                    { institution: "Sage University, Bhopal", degree: "Master of Business Administration (HR+SCM)", duration: "Completed 2022 (91.3%)" },
+                    { institution: "Sarojini Naidu Govt. Girls PG College, Bhopal", degree: "B.COM+CA", duration: "Completed 2022 (77.7%)" }
+                    // Add 12th details if available
+                ]
+            };
+
+
+            // --- Helper Functions ---
+            const setText = (id, text) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.textContent = text || '';
+                } else {
+                    // console.warn(`Helper setText: Element not found for #${id}`);
+                }
+            };
+            const setLink = (id, href, isEmail = false, isTel = false) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    let prefix = '';
+                    if (href) {
+                         if (!href.startsWith('http') && !isEmail && !isTel && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:')) prefix = 'https://';
+                         if (isEmail && !href.startsWith('mailto:')) prefix = 'mailto:';
+                         if (isTel && !href.startsWith('tel:')) prefix = 'tel:';
+                         el.href = prefix + href.replace(/^(https?:\/\/)/,'');
+                    } else {
+                        el.href = '#';
+                    }
+                } else {
+                    // console.warn(`Helper setLink: Element not found for #${id}`);
+                }
+            };
+             const setHTML = (id, html) => {
+                 const el = document.getElementById(id);
+                 if (el) {
+                    el.innerHTML = html || '';
+                 } else {
+                    // console.warn(`Helper setHTML: Element not found for #${id}`);
+                 }
+            };
+            const setImage = (id, src, alt) => {
+                 const el = document.getElementById(id);
+                 if (el) { el.src = src; el.alt = alt; } else console.warn(`Image element not found: #${id}`);
+            }
+
+            // --- Populate Data Function ---
+            function populatePortfolioData() {
+                console.log("Attempting to populate data...");
+                try {
+                    const data = portfolioData;
+                    if (!data || !data.personalInfo) {
+                        console.error("Portfolio data object is missing or invalid.");
+                        return;
+                    }
+                    const pi = data.personalInfo;
+                    const contact = pi.contact;
+
+                    // Navbar & Footer
+                    setText('nav-name', pi.name);
+                    setText('footer-name', pi.name);
+                    setText('footer-title', pi.shortTitle);
+                    setText('footer-copyright-name', pi.name); // Update copyright name too
+                    setText('current-year', new Date().getFullYear());
+
+                    // Hero
+                    setText('hero-name', pi.name);
+                    setText('hero-short-title', pi.shortTitle);
+                    setText('hero-tagline', pi.tagline);
+                    setImage('hero-image', 'placeholder-profile.png', pi.name); // UPDATE PATH
+                    setLink('linkedin-hero-link', contact.linkedin);
+                    setLink('email-hero-link', contact.email, true);
+                    setLink('phone-hero-link', contact.phone, false, true);
+
+                    // About
+                    // setImage('about-image', 'placeholder-about.png', pi.name); // UPDATE PATH if using
+                    setText('summary', data.summary);
+                    setText('location', pi.location);
+                    setText('email-link-about', contact.email);
+                    setLink('email-link-about', contact.email, true);
+                    setText('phone-link-about', contact.phone);
+                    setLink('phone-link-about', contact.phone, false, true);
+                    setText('linkedin-link-about', contact.linkedin);
+                    setLink('linkedin-link-about', contact.linkedin);
+                    setText('birthday', 'May 12, 2001'); // Hardcoded from original, could move to data
+                    setText('languages-detail', 'Hindi, English'); // Hardcoded from original
+
+                    // Skills
+                    const createSkillPill = (skill) => `<span class="skill-pill px-3 py-1 rounded-full text-xs font-medium inline-block mr-1.5 mb-1.5">${skill}</span>`;
+                    setHTML('tech-skills', data.skills.technical.map(createSkillPill).join(''));
+                    setHTML('tools-platforms', data.skills.toolsPlatforms.map(createSkillPill).join(''));
+                    setHTML('languages', data.skills.languages.map(lang => `<span class="text-gray-700 text-sm"><i data-lucide="check" class="w-3.5 h-3.5 mr-1 text-msblue stroke-current"></i>${lang.language} <span class="text-xs text-gray-500">(${lang.proficiency})</span></span>`).join('<span class="mx-2 text-gray-300">|</span>'));
+
+                    // Experience
+                    setHTML('experience-container', data.workExperience.map(job => `
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                               <div class="bg-white p-6 card">
+                                    <p class="text-xs font-semibold text-msblue mb-1">${job.duration}</p>
+                                    <h3 class="text-lg font-semibold text-msdark mb-0.5">${job.position}</h3>
+                                    <p class="text-sm font-medium text-gray-700 mb-3">${job.company}</p>
+                                    <div class="flex items-center text-xs text-gray-500 mb-4">
+                                        <i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1.5"></i>${job.location}
+                                    </div>
+                                    <ul class="space-y-1.5 text-gray-700 text-sm list-disc list-inside pl-1">
+                                        ${job.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>`).join(''));
+
+                    // Education
+                    setHTML('education-container', data.education.map(edu => `
+                        <div class="bg-gray-50 p-6 card h-full">
+                           <div class="flex items-start space-x-4">
+                                <div class="mt-1 shrink-0"><i data-lucide="graduation-cap" class="w-10 h-10 text-msblue opacity-80"></i></div>
+                                <div class="flex-1">
+                                    <h3 class="text-md font-semibold text-msdark">${edu.institution}</h3>
+                                    <p class="text-gray-700 text-sm mb-1">${edu.degree}</p>
+                                    <p class="text-gray-500 text-xs">${edu.duration}</p>
+                                </div>
+                            </div>
+                        </div>`).join(''));
+
+                    // Certifications & Awards (Conditional Display)
+                     const certSection = document.getElementById('certifications');
+                     const certBlock = document.getElementById('certifications-block');
+                     const awardsBlock = document.getElementById('awards-block');
+                     let hasAchievements = false;
+                     if (data.certifications && data.certifications.length > 0 && certBlock) {
+                         setHTML('certifications-container', data.certifications.map(cert => `...`).join('')); // Add HTML structure if needed
+                         certBlock.classList.remove('hidden');
+                         hasAchievements = true;
+                     }
+                     if (data.awards && data.awards.length > 0 && awardsBlock) {
+                         setHTML('awards-container', data.awards.map(award => `...`).join('')); // Add HTML structure if needed
+                         awardsBlock.classList.remove('hidden');
+                         hasAchievements = true;
+                     }
+                     if (hasAchievements && certSection) {
+                         certSection.classList.remove('hidden');
+                     }
+
+                    // Contact Info & Footer Links
+                    setText('contact-email-link', contact.email);
+                    setLink('contact-email-link', contact.email, true);
+                    setLink('email-footer-link', contact.email, true);
+                    setText('contact-phone-link', contact.phone);
+                    setLink('contact-phone-link', contact.phone, false, true);
+                    setLink('phone-footer-link', contact.phone, false, true);
+                    setText('contact-location', pi.location);
+                    setLink('contact-linkedin-link', contact.linkedin);
+                    setLink('linkedin-footer-link', contact.linkedin);
+
+                    console.log("Data population seems complete.");
+                    setTimeout(() => {
+                        createLucideIcons();
+                    }, 100);
+
+                } catch (error) {
+                    console.error("Error during populatePortfolioData:", error);
+                }
+            } // --- End populatePortfolioData ---
+
+
+            // --- UI Initialization Function ---
+            function initializeUI() {
+                 console.log("Initializing UI...");
+                 try {
+                    const navbar = document.getElementById('navbar');
+                    const backToTopButton = document.getElementById('back-to-top');
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const menuToggle = document.getElementById('menu-toggle');
+                    const menuIcon = document.getElementById('menu-icon');
+                    const contactForm = document.getElementById('contact-form');
+                    const formStatus = document.getElementById('form-status');
+                    const sections = document.querySelectorAll('main section[id]'); // Target sections in main
+                    const navLinks = document.querySelectorAll('#navbar .nav-link'); // Target desktop nav links specifically
+
+                    // Mobile Menu
+                    if (menuToggle && mobileMenu && menuIcon) {
+                        menuToggle.addEventListener('click', () => {
+                            const isHidden = mobileMenu.classList.toggle('hidden');
+                            menuIcon.setAttribute('data-lucide', isHidden ? 'menu' : 'x');
+                            menuToggle.setAttribute('aria-expanded', String(!isHidden));
+                            createLucideIcons();
+                        });
+                        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                            link.addEventListener('click', () => {
+                                mobileMenu.classList.add('hidden');
+                                menuIcon.setAttribute('data-lucide', 'menu');
+                                menuToggle.setAttribute('aria-expanded', 'false');
+                                createLucideIcons();
+                            });
+                        });
+                    } else { console.warn("Mobile menu elements missing."); }
+
+                    // Navbar shrink & Back-to-Top
+                    const scrollThreshold = 50;
+                    if (navbar || backToTopButton) {
+                        const handleScroll = () => {
+                            const scrolled = window.scrollY > scrollThreshold;
+                            if (navbar) { navbar.classList.toggle('scrolled', scrolled); navbar.classList.toggle('not-scrolled', !scrolled); }
+                            if (backToTopButton) { backToTopButton.classList.toggle('opacity-100', scrolled); backToTopButton.classList.toggle('pointer-events-auto', scrolled); backToTopButton.classList.toggle('opacity-0', !scrolled); backToTopButton.classList.toggle('pointer-events-none', !scrolled); }
+                        };
+                        window.addEventListener('scroll', handleScroll, { passive: true });
+                        handleScroll();
+                    }
+
+                    // Back to Top click
+                    if (backToTopButton) { backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' })); }
+
+                    // Active section highlighting
+                    if (sections.length > 0 && navLinks.length > 0) {
+                        const navHeight = navbar ? navbar.offsetHeight : 64;
+                        const observerOptions = { rootMargin: `-${navHeight}px 0px -40% 0px` }; // Adjust trigger zone
+                        const sectionObserver = new IntersectionObserver((entries) => {
+                            let intersectingId = null;
+                             entries.forEach(entry => {
+                                 if(entry.isIntersecting) {
+                                     intersectingId = entry.target.getAttribute('id');
+                                 }
+                            });
+
+                             navLinks.forEach(link => {
+                                 link.classList.remove('active');
+                                 if (intersectingId && link.getAttribute('href') === `#${intersectingId}`) {
+                                    link.classList.add('active');
+                                 }
+                             });
+                        }, observerOptions);
+                        sections.forEach(section => sectionObserver.observe(section));
+                    } else { console.warn("Sections or Nav links missing for observer."); }
+
+                    // Contact form
+                    if (contactForm && formStatus) {
+                         contactForm.addEventListener('submit', function (e){});
+                    } else { console.warn("Contact form elements missing."); }
+
+                    // Section entrance animations
+                     const animatedSections = document.querySelectorAll('.section-animate');
+                     if ('IntersectionObserver' in window && animatedSections.length > 0) {
+                         const animationObserver = new IntersectionObserver((entries) => {
+                             entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); } });
+                         }, { threshold: 0.05 }); // Trigger earlier
+                         animatedSections.forEach(section => animationObserver.observe(section));
+                     } else { animatedSections.forEach(section => section.classList.add('is-visible')); }
+
+                     // Staggered hero animation
+                     document.querySelectorAll('#hero .animate-fade-in-up').forEach((el, index) => {
+                         el.style.animationDelay = `${index * 0.1 + 0.1}s`;
+                         el.style.animationName = 'fadeInUp';
+                         el.style.animationFillMode = 'forwards';
+                      });
+
+                    console.log("UI Initialization complete.");
+                } catch (error) {
+                    console.error("Error during initializeUI:", error);
+                }
+            } // --- End initializeUI ---
+
+
+            // --- Initial Execution Flow ---
+            console.log("Running initial execution flow...");
+            try {
+                populatePortfolioData(); // Populate content first
+                initializeUI(); // Then set up interactions
+
+                // Hide loading screen
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        loadingScreen.addEventListener('transitionend', () => {
+                            if(loadingScreen) loadingScreen.style.display = 'none'; // Check again
+                        }, { once: true });
+                        console.log("Loading screen hidden.");
+                    }, 400); // Slightly longer delay
+                } else { console.warn("Loading screen element not found."); }
+            } catch (error) {
+                console.error("Error during initialization:", error);
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) loadingScreen.style.display = 'none'; // Hide on error
+            }
+
+        }); // --- End DOMContentLoaded ---
+
+    </script>
+</body>
+</html>
